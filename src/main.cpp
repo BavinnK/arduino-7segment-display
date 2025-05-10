@@ -1,4 +1,5 @@
 #include <Arduino.h>
+#if 0
 const int a=13;
 const int b=12;
 const int f=11;
@@ -6,7 +7,39 @@ const int g=6;
 const int c=9;
 const int d=2;
 const int e=7;
+#endif
+const uint8_t pins[]={  13,12,11,6,9,2,7};
+const byte pinOut[10][7]={{1,1,1,0,1,1,1},
+                          {0,0,1,0,0,0,1},
+                          {1,1,0,1,0,1,1},
+                          {1,1,0,1,1,1,0},
+                          {0,1,1,1,1,0,0},
+                          {1,0,1,1,1,1,0},
+                          {1,0,1,1,1,1,1},
+                          {1,1,0,0,1,0,0},
+                          {1,1,1,1,1,1,1},
+                          {1,1,1,1,1,0,0}
+                          };
+void dispAll(int digit){
+for (int i = 0; i < 7; i++)
+{
+  digitalWrite(pins[i],pinOut[digit][i]);
+  
+}
+delay(1000);
+for (int i = 0; i < 7; i++)
+{
+  digitalWrite(pins[i],LOW);
+  
+}
 
+
+
+
+
+
+}                          
+ #if 0                         
 void disp0(){
   digitalWrite(a,HIGH);
   digitalWrite(b,HIGH);
@@ -141,36 +174,21 @@ digitalWrite(a,HIGH);
   digitalWrite(c,LOW);
   digitalWrite(b,LOW);
 }
+#endif
 void setup() {
-  pinMode(a, OUTPUT);
-  pinMode(b, OUTPUT);
-  pinMode(f, OUTPUT);
-  pinMode(g, OUTPUT);
-  pinMode(c, OUTPUT);
-  pinMode(d, OUTPUT);
-  pinMode(e, OUTPUT);
+  for (int i = 0; i < 10; i++)
+  {
+    pinMode(pins[i],OUTPUT);
+  }
+  
 }
 
 void loop() {
-  disp0();
+ for (int i = 0; i < 10; i++)
+ {
+  dispAll(i);
   delay(1000);
-  disp1();
-  delay(1000);
-  disp2();
-  delay(1000);
-  disp3();
-  delay(1000);
-  disp4();
-  delay(1000);
-  disp5();
-  delay(1000);
-  disp6();
-  delay(1000);
-  disp7();
-  delay(1000);
-  disp8();
-  delay(1000);
-  disp9();
-  delay(1000);
+ }
+ 
 
 }
